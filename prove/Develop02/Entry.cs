@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Frozen;
 using System.ComponentModel.DataAnnotations;
 
 public class Entry
@@ -9,7 +10,7 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"{_date} : {_promptText}");
+        Console.WriteLine($"Date:{_date} - Prompt: {_promptText}");
         Console.WriteLine(_entryText);
     }
 }

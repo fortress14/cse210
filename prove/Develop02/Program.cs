@@ -12,8 +12,9 @@ class Program
         //e._entryText = "Everything is awesome!";
         //e.Display();
 
-
-
+        Journal theJournal = new Journal();
+        PromptGenerator promptGenerator = new PromptGenerator();
+        
 
         Console.WriteLine("Welcome to the Journal Program!");
         String choice;
@@ -29,30 +30,37 @@ class Program
             choice = Console.ReadLine();
             if (choice == "1")
             {
-                PromptGenerator _prompts = new PromptGenerator();
-                //string _prompts = PromptGenerator.GetRandomPrompt();
-                Journal theJournal = new Journal();
-                Entry anEntry = new Entry();
-                theJournal.AddEntry (anEntry);
-                anEntry.Display();
+                Entry newEntry = new Entry();
+                newEntry._date = DateTime.Now.ToString("MM-dd-yyyy");
+                newEntry._promptText = promptGenerator.GetRandomPrompt();
 
-            
+                Console.WriteLine($"Prompt: {newEntry._promptText}");
+                newEntry._entryText = Console.ReadLine();
+
+                theJournal.AddEntry (newEntry);
             }
             else if (choice == "2")
             {
+                theJournal.DisplayAll();
                 
             }
             else if (choice == "3")
             {
+                Console.Write("What is the filename? ");
+                string loadFileName = Console.ReadLine();
+                theJournal.LoadFromFile(loadFileName);
 
             }
             else if (choice =="4")
             {
+               Console.Write("Enter the filename to save: ");
+               string saveFileName = Console.ReadLine();
+               theJournal.SaveToFile(saveFileName);
 
             }
             else if (choice == "5")
             {
-                Console.WriteLine("Goodbye");
+                Console.WriteLine("Exiting Journal!");
             }
             else
             {
